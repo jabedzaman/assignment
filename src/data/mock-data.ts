@@ -1,4 +1,6 @@
-export const courses = [
+import { IAssignment, ICourse, IGrade, ITodo } from "~/types";
+
+export const courses: ICourse[] = [
   {
     id: "1",
     title: "Introduction to Computer Science",
@@ -43,7 +45,7 @@ export const courses = [
   },
 ];
 
-export const todos = [
+export const todos: ITodo[] = [
   {
     id: "1",
     title: "Submit Final Project Proposal",
@@ -86,7 +88,7 @@ export const todos = [
   },
 ];
 
-export const assignments = [
+export const assignments: IAssignment[] = [
   {
     id: "1",
     courseId: "1",
@@ -139,7 +141,7 @@ export const assignments = [
   },
 ];
 
-export const grades = [
+export const grades: IGrade[] = [
   {
     id: "1",
     courseId: "1",

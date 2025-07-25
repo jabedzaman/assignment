@@ -5,12 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Progress } from "~/components/ui/progress";
 import { courses } from "~/data/mock-data";
 
-export const Courses = () => {
+export const Courses = ({ viewAll = true }: { viewAll?: boolean }) => {
   return (
     <div className="lg:col-span-2">
       <h2 className="text-xl font-semibold text-gray-900 mb-4">My Courses</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {courses.map((course) => (
+        {courses.slice(0, viewAll ? courses.length : 4).map((course) => (
           <Card
             key={course.id}
             className="hover:shadow-md w-full transition-shadow"
@@ -44,6 +44,28 @@ export const Courses = () => {
             </CardContent>
           </Card>
         ))}
+        {!viewAll && courses.length > 4 && (
+          <Card className="hover:shadow-md w-full transition-shadow">
+            <CardHeader className="pb-3 h-full">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold text-gray-900 line-clamp-2">
+                  {+courses.length - 4 > 0
+                    ? `View All (${+courses.length - 4})`
+                    : "View All"}
+                </CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <Link href={`/courses/`}>
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                    View
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );
